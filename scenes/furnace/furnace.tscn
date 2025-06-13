@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://kd46kkrwbs34"]
+
+[ext_resource type="Script" uid="uid://cnk3eyy52ujqs" path="res://scenes/furnace/furnace.gd" id="1_s0qeq"]
+[ext_resource type="PackedScene" uid="uid://ce036w60ytxr3" path="res://scenes/world_grid_object/world_grid_object.tscn" id="1_w2pig"]
+[ext_resource type="Texture2D" uid="uid://pic28vl8bdr2" path="res://assets/images/sprite_furnace.png" id="2_yilfh"]
+
+[node name="Furnace" type="Node2D"]
+script = ExtResource("1_s0qeq")
+needed_ticks_for_craft = 2
+
+[node name="WorldGridObject" parent="." node_paths=PackedStringArray("main_object") instance=ExtResource("1_w2pig")]
+main_object = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yilfh")

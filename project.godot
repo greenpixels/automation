@@ -1,0 +1,42 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Automation"
+run/main_scene="uid://ufivglxxko7j"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+config/icon="res://assets/images/icon.svg"
+
+[autoload]
+
+ProductionManager="*res://globals/production_manager/production_manager.tscn"
+WorldGrid="*res://globals/world_grid/world_grid.tscn"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
+[file_customization]
+
+folder_colors={
+"res://scenes/": "red"
+}
+
+[physics]
+
+common/physics_ticks_per_second=1
+common/physics_interpolation=true
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
