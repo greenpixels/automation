@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwhymoawplu3f"]
+[gd_scene load_steps=4 format=3 uid="uid://cwhymoawplu3f"]
 
 [ext_resource type="Script" uid="uid://bin4ar6ma3yes" path="res://scenes/item/item.gd" id="1_vijbe"]
-[ext_resource type="PackedScene" uid="uid://cy7f7gu3061ou" path="res://scenes/multi_mesh_object/multi_mesh_object.tscn" id="2_vijbe"]
+[ext_resource type="Texture2D" uid="uid://bki3v38awbxxr" path="res://assets/images/spritesheet.png" id="2_vijbe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vijbe"]
+atlas = ExtResource("2_vijbe")
+region = Rect2(0, 96, 32, 32)
 
 [node name="Item" type="Node2D"]
 physics_interpolation_mode = 1
 script = ExtResource("1_vijbe")
 
-[node name="MultiMeshObject" parent="." node_paths=PackedStringArray("node_reference") instance=ExtResource("2_vijbe")]
-unique_name_in_owner = true
-type = 0
-node_reference = NodePath("..")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_vijbe")

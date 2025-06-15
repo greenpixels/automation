@@ -2,7 +2,7 @@ class_name Belt
 extends Node2D
 
 @export var item_direction: Vector2i = Vector2i.ZERO
-@export var slots: PackedFloat32Array = [-1, -1, -1, -1]
+@export var slots: PackedFloat32Array = [-1, -1, -1, -1 , -1, -1, -1 , -1, -1, -1 , -1, -1, -1 , -1, -1, -1 , -1, -1, -1 , -1, -1, -1 , -1, -1, -1]
 @onready var path_follow: PathFollow2D = $Path2D/PathFollow2D
 
 

@@ -19,7 +19,6 @@ config/icon="res://assets/images/icon.svg"
 
 ProductionManager="*res://globals/production_manager/production_manager.tscn"
 WorldGrid="*res://globals/world_grid/world_grid.tscn"
-MultiMeshRenderer="*res://globals/multi_mesh_renderer/multi_mesh_renderer.tscn"
 
 [display]
 
@@ -39,5 +38,3 @@ common/physics_interpolation=true
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"

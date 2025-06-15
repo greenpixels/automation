@@ -51,4 +51,3 @@ func _on_production_tick():
 		var object = WorldGrid.get_cell_at_global_position(global_position)
 		if object is Belt and object.can_take_new_item():
 			belt = object
-	%MultiMeshObject.update()

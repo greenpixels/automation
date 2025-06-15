@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bki3v38awbxxr"
-path="res://.godot/imported/spritesheet_belt.png-9eaf0b16126b27b28275077f8aa4b729.ctex"
+path="res://.godot/imported/spritesheet.png-b9bc20fbb264e013c063fa1f7a8a3ed8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/spritesheet_belt.png"
-dest_files=["res://.godot/imported/spritesheet_belt.png-9eaf0b16126b27b28275077f8aa4b729.ctex"]
+source_file="res://assets/images/spritesheet.png"
+dest_files=["res://.godot/imported/spritesheet.png-b9bc20fbb264e013c063fa1f7a8a3ed8.ctex"]
 
 [params]
 

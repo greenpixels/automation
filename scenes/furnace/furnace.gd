@@ -8,7 +8,6 @@ var current_production_ticks = 0
 
 
 func _ready() -> void:
-	%MultiMeshObject.update()
 	ProductionManager.production_tick.connect(_on_production_tick)
 
 
