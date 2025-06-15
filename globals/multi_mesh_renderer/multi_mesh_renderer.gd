@@ -15,10 +15,10 @@ static var draw_index = {
 
 var _should_reset_draw_progress = true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	set_deferred("_should_reset_draw_progress", true)
 
-func set_mesh_transform_for(transform: Transform2D, type: Type):
+func set_mesh_transform_for(target_transform: Transform2D, type: Type):
 	if _should_reset_draw_progress:
 		_should_reset_draw_progress = false
 		draw_index = {
@@ -30,7 +30,7 @@ func set_mesh_transform_for(transform: Transform2D, type: Type):
 	match(type):
 		Type.ITEM:
 			item_renderer.multimesh.visible_instance_count += 1
-			item_renderer.multimesh.set_instance_transform_2d(draw_index[type], transform)
+			item_renderer.multimesh.set_instance_transform_2d(draw_index[type], target_transform)
 		Type.FURNACE:
-			furnace_renderer.multimesh.set_instance_transform_2d(draw_index[type], transform)
+			furnace_renderer.multimesh.set_instance_transform_2d(draw_index[type], target_transform)
 	draw_index[type] += 1
