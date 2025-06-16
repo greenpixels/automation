@@ -1,6 +1,5 @@
 extends Node2D
 
-
 @export var tile_map_layer: TileMapLayer
 @export var placeable: Placeable:
 	set(value):
@@ -25,10 +24,12 @@ extends Node2D
 
 @onready var placeable_preview: Sprite2D = $PlaceablePreview
 
+
 func _unhandled_input(event: InputEvent) -> void:
+	var global_mouse_position: Vector2 = event.global_position
 	if event is InputEventMouseMotion:
 		placeable_preview.global_position = WorldGrid.get_world_grid_coordinate_to_global(
-			WorldGrid.get_global_to_world_grid_coordinate(event.global_position)
+			WorldGrid.get_global_to_world_grid_coordinate(global_mouse_position)
 		)
 	elif event is InputEventKey and event.is_released() and placeable:
 		if event.is_action("rotate_placeable") and placeable.can_be_rotated:
@@ -37,22 +38,24 @@ func _unhandled_input(event: InputEvent) -> void:
 			is_placeable_vertically_flipped = !is_placeable_vertically_flipped
 	elif event is InputEventMouseButton:
 		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
-			_place_object_at(WorldGrid.get_global_to_world_grid_coordinate(event.global_position))
+			_place_object_at(WorldGrid.get_global_to_world_grid_coordinate(global_mouse_position))
 		elif event.button_mask == MOUSE_BUTTON_MASK_RIGHT:
 			WorldGrid.remove_object_at(
-				WorldGrid.get_global_to_world_grid_coordinate(event.global_position)
+				WorldGrid.get_global_to_world_grid_coordinate(global_mouse_position)
 			)
 
-func _place_object_at(coords: Vector2):
+
+func _place_object_at(coords: Vector2) -> void:
 	if not placeable or not placeable.scene:
 		return
-	var object = placeable.scene.instantiate()
+	var object: Node2D = placeable.scene.instantiate()
 	object.global_position = WorldGrid.get_world_grid_coordinate_to_global(coords)
 	object.scale.y = -1 if is_placeable_vertically_flipped else 1
 	object.rotation = placeable_preview.rotation
 	WorldGrid.add_child(object)
 
-func set_placeable(new_placeable: Placeable):
+
+func set_placeable(new_placeable: Placeable) -> void:
 	if placeable == new_placeable:
 		return
 	placeable = new_placeable

@@ -1,7 +1,7 @@
 extends Node
 signal production_tick
 
-@export var item_count = 0
+@export var item_count: int = 0
 
 @export var speed_scale: int = 1:
 	set(value):

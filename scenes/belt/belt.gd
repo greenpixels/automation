@@ -8,6 +8,7 @@ var current_item_end_direction: Vector2i
 
 @onready var path_follow: PathFollow2D = $Path2D/PathFollow2D
 
+
 func _ready() -> void:
 	current_item_end_direction = original_item_end_direction
 	current_item_end_direction *= Vector2i(scale)
@@ -15,14 +16,14 @@ func _ready() -> void:
 	current_item_end_direction = current_item_end_direction.clamp(Vector2i(-1, -1), Vector2(1, 1))
 
 
-func add_item(item: Item):
+func add_item(item: Item) -> void:
 	item.belt = self
 	item.belt_position_index = 0
 	slots[item.belt_position_index] = item.item_id
 	position_item(item)
 
 
-func remove_item(item: Item):
+func remove_item(item: Item) -> void:
 	slots[item.belt_position_index] = -1
 	item.belt_position_index = 0
 
@@ -41,11 +42,11 @@ func move_item_on_belt(item: Item) -> bool:
 	return true
 
 
-func position_item(item: Item):
+func position_item(item: Item) -> void:
 	path_follow.progress_ratio = float(item.belt_position_index) / float(slots.size())
 	# item.rotation = (item.global_position - path_follow.global_position).round().normalized().angle()
 	item.global_position = path_follow.global_position
 
 
-func can_take_new_item():
+func can_take_new_item() -> bool:
 	return is_equal_approx(slots[0], -1)

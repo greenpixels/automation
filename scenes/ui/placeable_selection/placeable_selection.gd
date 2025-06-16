@@ -6,8 +6,10 @@ signal placeable_clicked(placeabl: Placeable)
 
 @onready var item_list: ItemList = $ItemList
 
+
 func _ready() -> void:
-	for placeable in placeables:
+	for placeable: Placeable in placeables:
+		@warning_ignore("RETURN_VALUE_DISCARDED")
 		item_list.add_item(placeable.scene.resource_path, placeable.texture)
 
 

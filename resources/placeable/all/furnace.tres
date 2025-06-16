@@ -11,4 +11,6 @@ atlas = ExtResource("3_yept5")
 script = ExtResource("1_ipu4x")
 scene = ExtResource("1_bc832")
 texture = SubResource("AtlasTexture_4a1ua")
+can_be_flipped = false
+can_be_rotated = false
 metadata/_custom_type_script = "uid://cvk265sicnwj5"
