@@ -24,7 +24,7 @@ _data = {
 }
 point_count = 3
 
-[node name="BeltRightDOwn" instance=ExtResource("1_sm1p4")]
+[node name="BeltCorner" instance=ExtResource("1_sm1p4")]
 original_item_end_direction = Vector2i(0, 1)
 
 [node name="AnimatedSprite2D" parent="." index="0"]

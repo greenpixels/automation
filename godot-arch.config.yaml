@@ -17,6 +17,7 @@ ignorePatterns:
     "rule-allowed-file-location":
     "rule-filename-snake-case":
     "rule-parent-has-same-name":
+        - ./**/*.tres
     "rule-scene-nodes-pascal-case":
     "rule-root-node-is-file-name-pascal":
 

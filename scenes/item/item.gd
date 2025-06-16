@@ -14,7 +14,8 @@ static var id_increment = 0
 		belt.add_item(self)
 @export var belt_position_index = 0
 @export var target_position: Vector2
-var next_cell_coord : Variant
+var next_cell_coord: Variant
+
 
 func _ready() -> void:
 	item_id = Item.id_increment
@@ -31,6 +32,7 @@ func _ready() -> void:
 func _exit_tree() -> void:
 	ProductionManager.production_tick.disconnect(_on_production_tick)
 	ProductionManager.item_count -= 1
+
 
 func _on_production_tick():
 	if belt and is_instance_valid(belt):

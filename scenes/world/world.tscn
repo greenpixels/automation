@@ -38,10 +38,10 @@ navigation_enabled = false
 [node name="TilePlacer" parent="." node_paths=PackedStringArray("tile_map_layer") instance=ExtResource("11_dlabj")]
 tile_map_layer = NodePath("../TileMapLayer")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UserInterface" type="CanvasLayer" parent="."]
 
-[node name="PlaceableSelection" parent="UI" instance=ExtResource("4_6m72w")]
+[node name="PlaceableSelection" parent="UserInterface" instance=ExtResource("4_6m72w")]
 offset_left = 928.0
 offset_right = 1152.0
 
-[connection signal="placeable_clicked" from="UI/PlaceableSelection" to="TilePlacer" method="set_placeable"]
+[connection signal="placeable_clicked" from="UserInterface/PlaceableSelection" to="TilePlacer" method="set_placeable"]

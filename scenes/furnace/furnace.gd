@@ -6,11 +6,14 @@ extends Node2D
 var item_scene = preload("res://scenes/item/item.tscn")
 var current_production_ticks = 0
 
+
 func _ready() -> void:
 	ProductionManager.production_tick.connect(_on_production_tick)
 
+
 func _exit_tree() -> void:
 	ProductionManager.production_tick.disconnect(_on_production_tick)
+
 
 func _on_production_tick():
 	current_production_ticks += 1
