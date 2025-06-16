@@ -1,0 +1,14 @@
+extends PanelContainer
+
+@export var placeables : Array[Placeable]
+@onready var item_list : ItemList = $ItemList
+
+signal placeable_clicked(placeabl: Placeable)
+
+func _ready() -> void:
+	for placeable in placeables:
+		item_list.add_item(placeable.scene.resource_path, placeable.texture)
+
+func _on_item_list_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
+	if index >= placeables.size(): return
+	placeable_clicked.emit(placeables[index])

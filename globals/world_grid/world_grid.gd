@@ -17,7 +17,14 @@ func place_object(object: Node2D) -> Variant:
 	placed_objects[world_cell_id] = object
 	return world_cell_id
 
-
+func remove_object_at(cell_coord: Vector2) -> void:
+	var world_cell_id = _coord_to_unique_number(cell_coord)
+	if not placed_objects.has(world_cell_id): return
+	var object = placed_objects[world_cell_id]
+	if not object: return
+	object.queue_free()
+	placed_objects.erase(world_cell_id)
+	
 func _coord_to_unique_number(coordinate: Vector2i) -> int:
 	var a = coordinate.x
 	var b = coordinate.y
@@ -27,6 +34,8 @@ func _coord_to_unique_number(coordinate: Vector2i) -> int:
 func get_global_to_world_grid_coordinate(global: Vector2) -> Vector2:
 	return Vector2i(global / cell_size)
 
+func get_world_grid_coordinate_to_global(coords: Vector2) -> Vector2:
+	return coords * cell_size  + cell_size / 2
 
 func get_cell_at_global_position(global: Vector2) -> Node2D:
 	var world_cell_id = _coord_to_unique_number(get_global_to_world_grid_coordinate(global))

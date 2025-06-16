@@ -32,9 +32,8 @@ func _exit_tree() -> void:
 	ProductionManager.production_tick.disconnect(_on_production_tick)
 	ProductionManager.item_count -= 1
 
-
 func _on_production_tick():
-	if belt:
+	if belt and is_instance_valid(belt):
 		if belt_position_index >= belt.slots.size() - 1 and next_cell_coord:
 			var next_possible_object = WorldGrid.get_cell_at_coordinate(next_cell_coord)
 			if next_possible_object is Belt and next_possible_object.can_take_new_item():
@@ -44,10 +43,9 @@ func _on_production_tick():
 			if belt.move_item_on_belt(self):
 				next_cell_coord = (
 					WorldGrid.get_global_to_world_grid_coordinate(belt.global_position)
-					+ Vector2(belt.item_direction)
+					+ Vector2(belt.current_item_end_direction)
 				)
 	else:
-		var object = WorldGrid.get_cell_at_global_position(global_position)
-		if object is Belt and object.can_take_new_item():
-			belt = object
+		queue_free()
+		return
 	%MultiMeshObject.update()

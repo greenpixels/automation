@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pic28vl8bdr2"
-path="res://.godot/imported/sprite_furnace.png-218a7edd1697b34b1154d2d03832bfc2.ctex"
+uid="uid://b20d51xcgous8"
+path="res://.godot/imported/test_tile.png-c826d7b282ec86cd4bf378e9282f899d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/sprite_furnace.png"
-dest_files=["res://.godot/imported/sprite_furnace.png-218a7edd1697b34b1154d2d03832bfc2.ctex"]
+source_file="res://assets/images/test_tile.png"
+dest_files=["res://.godot/imported/test_tile.png-c826d7b282ec86cd4bf378e9282f899d.ctex"]
 
 [params]
 
