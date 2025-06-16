@@ -2,7 +2,7 @@ class_name Belt
 extends Node2D
 
 @export var item_direction: Vector2i = Vector2i.ZERO
-@export var slots: PackedFloat32Array = [-1, -1, -1, -1]
+@export var slots: PackedInt32Array = [-1, -1, -1, -1]
 @onready var path_follow: PathFollow2D = $Path2D/PathFollow2D
 
 
@@ -18,16 +18,17 @@ func remove_item(item: Item):
 	item.belt_position_index = 0
 
 
-func move_item_on_belt(item: Item):
-	if not (
-		item.belt_position_index >= slots.size() - 1
-		or not is_equal_approx(slots[item.belt_position_index + 1], -1)
-	):
-		if item.belt_position_index >= 0:
-			slots[item.belt_position_index] = -1
-		item.belt_position_index += 1
-		slots[item.belt_position_index] = item.item_id
-		position_item(item)
+func move_item_on_belt(item: Item) -> bool:
+	if(
+		item.belt_position_index >= slots.size() - 1 or
+		not is_equal_approx(slots[item.belt_position_index + 1], -1)
+	): return false
+	if item.belt_position_index >= 0:
+		slots[item.belt_position_index] = -1
+	item.belt_position_index += 1
+	slots[item.belt_position_index] = item.item_id
+	position_item(item)
+	return true
 
 
 func position_item(item: Item):
