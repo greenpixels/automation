@@ -10,11 +10,14 @@ var current_item_end_direction: Vector2i
 
 
 func _ready() -> void:
+	orientate_item_directions()
+
+func orientate_item_directions():
 	current_item_end_direction = original_item_end_direction
 	current_item_end_direction *= Vector2i(scale)
 	current_item_end_direction = Vector2(current_item_end_direction).rotated(rotation)
 	current_item_end_direction = current_item_end_direction.clamp(Vector2i(-1, -1), Vector2(1, 1))
-
+	reset_physics_interpolation()
 
 func add_item(item: Item) -> void:
 	item.belt = self

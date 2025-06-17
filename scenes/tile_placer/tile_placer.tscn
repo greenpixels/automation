@@ -7,3 +7,4 @@ script = ExtResource("1_gf57p")
 
 [node name="PlaceablePreview" type="Sprite2D" parent="."]
 physics_interpolation_mode = 2
+modulate = Color(1, 1, 1, 0.333333)

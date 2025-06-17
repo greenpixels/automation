@@ -5,6 +5,8 @@ const MAX_CELLS_HEIGHT: int = 1000
 
 @export var cell_size: Vector2 = Vector2(32, 32)
 
+var cell_distance_max = sqrt((cell_size.x*cell_size.x) + (cell_size.y*cell_size.y))
+
 var placed_objects: Dictionary[int, Node2D] = {}
 
 func can_place_object(object: Node2D) -> bool:
@@ -32,9 +34,10 @@ func remove_object_at(cell_coord: Vector2) -> void:
 	var object: Node2D = placed_objects[world_cell_id]
 	if not object:
 		return
-	object.queue_free()
 	@warning_ignore("RETURN_VALUE_DISCARDED")
 	placed_objects.erase(world_cell_id)
+	object.queue_free()
+
 
 
 func _coord_to_unique_number(coordinate: Vector2i) -> int:
@@ -57,4 +60,5 @@ func get_cell_at_global_position(global: Vector2) -> Node2D:
 
 
 func get_cell_at_coordinate(coordinate: Vector2i) -> Node2D:
+	if not is_instance_valid(placed_objects.get(_coord_to_unique_number(coordinate))): return null
 	return placed_objects.get(_coord_to_unique_number(coordinate))

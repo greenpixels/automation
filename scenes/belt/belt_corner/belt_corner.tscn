@@ -20,12 +20,12 @@ animations = [{
 
 [sub_resource type="Curve2D" id="Curve2D_yex7t"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0)
 }
 point_count = 3
 
 [node name="BeltCorner" instance=ExtResource("1_sm1p4")]
-original_item_end_direction = Vector2i(0, 1)
+original_item_end_direction = Vector2i(1, 0)
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_hvt58")
@@ -34,5 +34,5 @@ sprite_frames = SubResource("SpriteFrames_hvt58")
 curve = SubResource("Curve2D_yex7t")
 
 [node name="PathFollow2D" parent="Path2D" index="0"]
-position = Vector2(-16, 0)
-rotation = 0.0
+position = Vector2(0, 15)
+rotation = -1.5708
