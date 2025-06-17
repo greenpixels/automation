@@ -7,6 +7,13 @@ const MAX_CELLS_HEIGHT: int = 1000
 
 var placed_objects: Dictionary[int, Node2D] = {}
 
+func can_place_object(object: Node2D) -> bool:
+	var cell_coord: Vector2 = get_global_to_world_grid_coordinate(object.global_position)
+	object.global_position = cell_coord * cell_size + cell_size / 2
+	var world_cell_id: int = _coord_to_unique_number(cell_coord)
+	if placed_objects.has(world_cell_id):
+		return false
+	return true
 
 func place_object(object: Node2D) -> Variant:
 	var cell_coord: Vector2 = get_global_to_world_grid_coordinate(object.global_position)

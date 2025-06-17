@@ -5,8 +5,9 @@ extends Node
 
 
 func _ready() -> void:
-	var world_id: int = WorldGrid.place_object(main_object)
-	if world_id == null:
+	var can_place : bool = WorldGrid.can_place_object(main_object)
+	if not can_place:
 		main_object.queue_free()
 		return
+	var world_id: int = WorldGrid.place_object(main_object)
 	id = world_id

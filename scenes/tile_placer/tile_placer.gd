@@ -26,8 +26,8 @@ extends Node2D
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	var global_mouse_position: Vector2 = event.global_position
 	if event is InputEventMouseMotion:
+		var global_mouse_position: Vector2 = event.global_position
 		placeable_preview.global_position = WorldGrid.get_world_grid_coordinate_to_global(
 			WorldGrid.get_global_to_world_grid_coordinate(global_mouse_position)
 		)
@@ -37,6 +37,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif event.is_action("flip_placeable") and placeable.can_be_flipped:
 			is_placeable_vertically_flipped = !is_placeable_vertically_flipped
 	elif event is InputEventMouseButton:
+		var global_mouse_position: Vector2 = event.global_position
 		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
 			_place_object_at(WorldGrid.get_global_to_world_grid_coordinate(global_mouse_position))
 		elif event.button_mask == MOUSE_BUTTON_MASK_RIGHT:
