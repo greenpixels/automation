@@ -65,9 +65,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:
 				current_mouse_mode = MouseMode.IDLE
 				recent_placements.clear()
-		var global_mouse_position: Vector2 = event.global_position
 
-func _on_hovered_tile_changed():
+func _on_hovered_tile_changed() -> void:
 	match current_mouse_mode:
 		MouseMode.PLACING:
 			_place_object_at(current_cell_coord)
@@ -76,11 +75,6 @@ func _on_hovered_tile_changed():
 			WorldGrid.remove_object_at(current_cell_coord)
 			return
 		_: return
-	var object : Node2D = WorldGrid.get_cell_at_coordinate(current_cell_coord)
-	if not object: return
-	recent_placements.push_back(object)
-	if recent_placements.size() > 3:
-		var _unused : Node2D = recent_placements.pop_front()
 
 func _place_object_at(coords: Vector2) -> void:
 	if not placeable or not placeable.scene:
@@ -105,8 +99,8 @@ func set_placeable(new_placeable: Placeable) -> void:
 		return
 	placeable = new_placeable
 
-func _align_recent_belts():
-	if not recent_placements.all(func(node): return is_instance_valid(node) and node is Belt):
+func _align_recent_belts() -> void:
+	if not recent_placements.all(func(node: Node2D) -> bool: return is_instance_valid(node) and node is Belt):
 		recent_placements.clear()
 		return
 	if recent_placements.size() <= 1: return
@@ -116,7 +110,7 @@ func _align_recent_belts():
 		return
 	recent_placements[0].rotation = belt_one_to_belt_two.angle()
 	recent_placements[1].rotation = belt_one_to_belt_two.angle()
-	for belt in recent_placements:
+	for belt : Node2D in recent_placements:
 		belt.orientate_item_directions()
 	if recent_placements.size() <= 2: return
 	var belt_two_to_belt_three : Vector2 = recent_placements[2].global_position - recent_placements[1].global_position
@@ -124,8 +118,9 @@ func _align_recent_belts():
 		recent_placements.clear()
 		return
 	var belt_one_to_belt_three  : Vector2 = recent_placements[2].global_position - recent_placements[0].global_position
-	if not int(abs(rad_to_deg(belt_one_to_belt_three.angle()))) % 90 == 0:
-		var cross = belt_one_to_belt_two.x * belt_two_to_belt_three.y - belt_one_to_belt_two.y * belt_two_to_belt_three.x
+	var radius : int = int(rad_to_deg(belt_one_to_belt_three.angle()))
+	if not abs(radius) % 90 == 0:
+		var cross : float = belt_one_to_belt_two.x * belt_two_to_belt_three.y - belt_one_to_belt_two.y * belt_two_to_belt_three.x
 		var belt_corner : Node2D = load("res://scenes/belt/belt_corner/belt_corner.tscn").instantiate()
 		belt_corner.rotation = belt_two_to_belt_three.angle()
 		belt_corner.global_position = recent_placements[1].global_position
@@ -134,5 +129,5 @@ func _align_recent_belts():
 		WorldGrid.add_child(belt_corner)
 		recent_placements[1] = belt_corner
 	recent_placements[2].rotation = belt_two_to_belt_three.angle()
-	for belt in recent_placements:
+	for belt : Node2D in recent_placements:
 		belt.orientate_item_directions()

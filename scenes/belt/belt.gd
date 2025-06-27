@@ -12,7 +12,7 @@ var current_item_end_direction: Vector2i
 func _ready() -> void:
 	orientate_item_directions()
 
-func orientate_item_directions():
+func orientate_item_directions() -> void:
 	current_item_end_direction = original_item_end_direction
 	current_item_end_direction *= Vector2i(scale)
 	current_item_end_direction = Vector2(current_item_end_direction).rotated(rotation)

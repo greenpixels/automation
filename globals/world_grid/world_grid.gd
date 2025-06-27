@@ -5,7 +5,7 @@ const MAX_CELLS_HEIGHT: int = 1000
 
 @export var cell_size: Vector2 = Vector2(32, 32)
 
-var cell_distance_max = sqrt((cell_size.x*cell_size.x) + (cell_size.y*cell_size.y))
+var cell_distance_max : float = sqrt((cell_size.x*cell_size.x) + (cell_size.y*cell_size.y))
 
 var placed_objects: Dictionary[int, Node2D] = {}
 
